@@ -11,7 +11,7 @@ namespace Chat_Bot_Poe_Part_1
     internal class methods
     {
 
-
+        //method to play greeting 
         public void PlayGreeting()
         {
             Console.Beep(1000, 500);
