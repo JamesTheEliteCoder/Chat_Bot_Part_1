@@ -15,7 +15,7 @@ namespace Chat_Bot_Poe_Part_1
         public void PlayGreeting()
         {
             Console.Beep(1000, 500);
-            Console.WriteLine("This beep represents the bot greeting you.");
+            Console.WriteLine("This beep represents the bot greeting you. ");
             PrintDivider();
             Console.WriteLine();
             
