@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
+
 
 namespace Chat_Bot_Poe_Part_1
 {
     internal class methods
     {
-
-        //method to play greeting 
+        //full marks
+        //method to play the greeting 
         public void PlayGreeting()
         {
             Console.Beep(1000, 500);
             Console.WriteLine("This beep represents the bot greeting you. ");
             PrintDivider();
             Console.WriteLine();
+
+            // added spacing for readability
             
         }
 
