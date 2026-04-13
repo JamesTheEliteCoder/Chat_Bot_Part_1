@@ -3,56 +3,32 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
+using SpeechLib;
 
 
 namespace Chat_Bot_Poe_Part_1
 {
     internal class methods
     {
-        //full marks
-        //method to play the greeting 
+       //method to play the greeting 
         public void PlayGreeting()
         {
-            Console.Beep(1000, 500);
-            Console.WriteLine("This beep represents the bot greeting you. ");
-            PrintDivider();
-            Console.WriteLine();
+            SpVoice voice = new SpVoice();
 
-            // added spacing for readability
             
-        }
-
-        public void DisplayLogo()
-        {
-
-            Console.WriteLine("                                     ███████╗████████╗ █████╗ ███╗   ██╗██████╗  █████╗ ");
-            Console.WriteLine("                                     ██╔════╝╚══██╔══╝██╔══██╗████╗  ██║██╔══██╗██╔══██╗");
-            Console.WriteLine("                                     █████╗     ██║   ███████║██╔██╗ ██║██║  ██║███████║");
-            Console.WriteLine("                                     ██╔══╝     ██║   ██╔══██║██║╚██╗██║██║  ██║██╔══██║");
-            Console.WriteLine("                                     ███████╗   ██║   ██║  ██║██║ ╚████║██████╔╝██║  ██║");
-            Console.WriteLine("                                     ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝");
-
-            Console.WriteLine();
-
-            Console.WriteLine("                                     ███████╗███████╗ ██████╗██╗   ██╗██████╗ ███████╗");
-            Console.WriteLine("                                     ██╔════╝██╔════╝██╔════╝██║   ██║██╔══██╗██╔════╝");
-            Console.WriteLine("                                     ███████╗█████╗  ██║     ██║   ██║██████╔╝█████╗  ");
-            Console.WriteLine("                                     ╚════██║██╔══╝  ██║     ██║   ██║██╔══██╗██╔══╝  ");
-            Console.WriteLine("                                     ███████║███████╗╚██████╗╚██████╔╝██║  ██║███████╗");
-            Console.WriteLine("                                     ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝");
-
-            Console.WriteLine();
-            Console.WriteLine("========================================================================================================================");
-            Console.WriteLine("                                                         WELCOME                       ");
-            Console.WriteLine("========================================================================================================================");
-            Console.WriteLine();
-            Console.WriteLine();
+            uint streamNumber; // required out parameter for Speak
+            voice.Speak("Hello! I'm Etanda Secure Cybersecurity Awareness Chat Bot, here to help you navigate the digital world safely and securely. Let's get started!", 0, out streamNumber);
+            PrintDivider();
+            Console.WriteLine();           
+         // added spacing for readability
 
 
-        } //method end >>DisplayLogo
+            
+        } // end of PlayGreeting
+
+        
 
         public static string BotName;
-
 
         public void AskName()
         {
@@ -135,18 +111,29 @@ namespace Chat_Bot_Poe_Part_1
                     PrintDivider();
                     askedHowAreYou = true;
                 }
-                   
-                string Input = Console.ReadLine().ToLower().Trim();
+
+                string Input = Console.ReadLine();
+
+                //logic to prohibit empty user input
+                if (string.IsNullOrWhiteSpace(Input))
+                {
+                    PrintDivider();
+                    TypeText("Error! Input cannot be empty, please enter a valid input.");
+                    PrintDivider();
+                    continue; // skip the rest of the loop and prompt again
+                }
+
+                Input = Input.ToLower(); // convert input to lowercase for easier comparison
 
                 if (Input == "exit")
                 {
-                   // Console.WriteLine();
+                    // Console.WriteLine();
                     PrintDivider();
                     TypeText("Remember to stay safe online! Goodbye.");
                     PrintDivider();
                     break;
-                } 
-                else if(Input.Contains("how are you"))
+                }
+                else if (Input.Contains(" how are you") || Input.Contains("how are") || Input.Contains("how")) 
                 {   
                     //Console.WriteLine();
                     PrintDivider();
@@ -193,9 +180,9 @@ namespace Chat_Bot_Poe_Part_1
                     PrintDivider();
                     TypeText("Of course I can!");
                     TypeText("The best way to protect your data online is to always create passwords that are long, unique, and hard to guess. A strong password should be at least 12 characters, mixing uppercase and lowercase letters, numbers, and symbols. Avoid using personal information like your name or birthdate, and never reuse the same password across different accounts ");
-                    TypeText("If you're afraid that you might forget your paswords, there are some tactics that you could use to never loose access to your passwords such as Google's password manager or simply oting your passwords in your notepad.");
+                    TypeText("If you're afraid that you might forget your paswords, there are some tactics that you could use to never loose access to your passwords such as Google's password manager or simply noting your passwords in your notepad.");
                     TypeText("If you choose the latter, always make sure that no-one can easily access the application used to store your data.");
-                    TypeText("Remember: Prevention is always better than cure (:");
+                    TypeText("Remember: Prevention is always better than cure :)");
                     PrintDivider();
                     TypeText("Try asking another!");
                     PrintDivider();
@@ -217,7 +204,7 @@ namespace Chat_Bot_Poe_Part_1
 
 
                 }
-                else if (Input.Contains("browsing") || Input.Contains("browse"))
+                else if (Input.Contains("browsing") || Input.Contains("browse") || Input.Contains("online"))
                 {
                    // Console.WriteLine();
                     PrintDivider();
@@ -265,7 +252,8 @@ namespace Chat_Bot_Poe_Part_1
 
         public void PrintDivider()
         {
-            
+            Console.ForegroundColor = ConsoleColor.Magenta;
+
             int width = Console.WindowWidth;
 
             // to prevent automatic line wrap
@@ -273,6 +261,8 @@ namespace Chat_Bot_Poe_Part_1
 
             
             Console.WriteLine(new string('-', width));
+
+            Console.ResetColor();   
         }
 
 

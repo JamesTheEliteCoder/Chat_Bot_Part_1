@@ -8,8 +8,10 @@
             //this program was created for PROG
             methods Methods = new methods();
 
+
             Methods.PlayGreeting();
-            Methods.DisplayLogo();
+            //displaying of the logo
+            Console.WriteLine(File.ReadAllText("logo.txt"));
             Methods.AskName();
             Methods.InvokeChat();
         }
